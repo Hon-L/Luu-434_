@@ -1,16 +1,16 @@
 setup:
-	python3 -m venv ~/.myrepo
+	python -m venv ./venv
 
 install:
-	pip install --upgrade pip &&\
-		pip install -r requirements.txt
+	pip install -r requirements.txt
 
 test:
-	python -m pytest -vv --cov=myrepolib tests/*.py
-	python -m pytest --nbval notebook.ipynb
-
+	python -m pytest -vv --cov=myrepolib tests/
 
 lint:
-	pylint --disable=R,C myrepolib cli web
+	pylint --disable=R,C myrepolib  
 
-all: setup install lint test
+lint2:
+	pylint --disable=R,C tests
+
+all: install lint lint2 test
